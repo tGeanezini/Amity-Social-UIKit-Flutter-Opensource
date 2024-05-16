@@ -14,6 +14,7 @@ import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../components/custom_user_avatar.dart';
 import '../../viewmodel/community_feed_viewmodel.dart';
@@ -27,7 +28,7 @@ import 'community_feed.dart';
 import 'post_content_widget.dart';
 
 class GlobalFeedScreen extends StatefulWidget {
-  final isShowMyCommunity;
+  final bool isShowMyCommunity;
   final bool canCreateCommunity;
 
   const GlobalFeedScreen({
@@ -57,6 +58,14 @@ class GlobalFeedScreenState extends State<GlobalFeedScreen> {
     }
 
     globalFeedProvider.initAmityGlobalfeed();
+  }
+
+  void _onPostViewed(AmityPost post) {
+    post.analytics().markPostAsViewed();
+    log('Id do post: ${post.postId}');
+    log('Quantidade de impressões do post: ${post.impression}');
+    log('Quantidade de alcances do post: ${post.reach}');
+    // Enviar as informações de alcance e impressões para um serviço nosso
   }
 
   @override
@@ -128,17 +137,19 @@ class GlobalFeedScreenState extends State<GlobalFeedScreen> {
                                         vm.getAmityPosts[index].listen.stream,
                                     initialData: vm.getAmityPosts[index],
                                     builder: (context, snapshot) {
-                                      return PostWidget(
-                                        isPostDetail: false,
-                                        // customPostRanking:
-                                        //     widget.isCustomPostRanking,
-                                        feedType: FeedType.global,
-                                        showCommunity: true,
-                                        showlatestComment: true,
+                                      return _PostViewedDetector(
                                         post: snapshot.data!,
-                                        theme: theme,
-                                        postIndex: index,
-                                        isFromFeed: true,
+                                        onPostViewed: _onPostViewed,
+                                        child: PostWidget(
+                                          isPostDetail: false,
+                                          feedType: FeedType.global,
+                                          showCommunity: true,
+                                          showlatestComment: true,
+                                          post: snapshot.data!,
+                                          theme: theme,
+                                          postIndex: index,
+                                          isFromFeed: true,
+                                        ),
                                       );
                                     }),
                               ],
@@ -155,6 +166,39 @@ class GlobalFeedScreenState extends State<GlobalFeedScreen> {
         ),
       );
     });
+  }
+}
+
+class _PostViewedDetector extends StatelessWidget {
+  final Widget child;
+  final AmityPost post;
+  final Function(AmityPost) onPostViewed;
+
+  const _PostViewedDetector({
+    required this.child,
+    required this.post,
+    required this.onPostViewed,
+  });
+
+  void _markPostAsViewed() {
+    onPostViewed(post);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    VisibilityDetectorController.instance.updateInterval =
+        const Duration(milliseconds: 1500);
+
+    return VisibilityDetector(
+      key: Key(post.postId!),
+      onVisibilityChanged: (info) {
+        var visiblePercentage = info.visibleFraction * 100;
+        if (visiblePercentage >= 60) {
+          _markPostAsViewed();
+        }
+      },
+      child: child,
+    );
   }
 }
 
