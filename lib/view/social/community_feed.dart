@@ -14,6 +14,7 @@ import 'package:amity_uikit_beta_service/viewmodel/my_community_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:intrinsic_dimension/intrinsic_dimension.dart';
 import 'package:provider/provider.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../viewmodel/community_feed_viewmodel.dart';
 import '../../viewmodel/community_viewmodel.dart';
@@ -141,11 +142,17 @@ class CommunityScreenState extends State<CommunityScreen> {
 
   TabController? _tabController;
 
+  void _onPostViewed(AmityPost post) {
+    post.analytics().markPostAsViewed();
+    log('Id do post: ${post.postId}');
+    log('Quantidade de impressões do post: ${post.impression}');
+    log('Quantidade de alcances do post: ${post.reach}');
+    // Enviar as informações de alcance e impressões para um serviço nosso
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    //final mediaQuery = MediaQuery.of(context);
-    //final bHeight = mediaQuery.size.height - mediaQuery.padding.top;
 
     return Consumer2<CommuFeedVM, CompoentSizeVM>(builder: (__, vm, sizeVM, _) {
       return StreamBuilder<AmityCommunity>(
@@ -183,15 +190,19 @@ class CommunityScreenState extends State<CommunityScreen> {
                         stream: vm.getCommunityPosts()[index].listen.stream,
                         initialData: vm.getCommunityPosts()[index],
                         builder: (context, snapshot) {
-                          return PostWidget(
-                            isPostDetail: false,
-                            showCommunity: false,
-                            showlatestComment: true,
-                            isFromFeed: true,
+                          return _PostViewedDetector(
                             post: snapshot.data!,
-                            theme: theme,
-                            postIndex: index,
-                            feedType: FeedType.community,
+                            onPostViewed: _onPostViewed,
+                            child: PostWidget(
+                              isPostDetail: false,
+                              showCommunity: false,
+                              showlatestComment: true,
+                              isFromFeed: true,
+                              post: snapshot.data!,
+                              theme: theme,
+                              postIndex: index,
+                              feedType: FeedType.community,
+                            ),
                           );
                         });
                   },
@@ -375,6 +386,39 @@ class CommunityScreenState extends State<CommunityScreen> {
                 ));
           });
     });
+  }
+}
+
+class _PostViewedDetector extends StatelessWidget {
+  final Widget child;
+  final AmityPost post;
+  final Function(AmityPost) onPostViewed;
+
+  const _PostViewedDetector({
+    required this.child,
+    required this.post,
+    required this.onPostViewed,
+  });
+
+  void _markPostAsViewed() {
+    onPostViewed(post);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    VisibilityDetectorController.instance.updateInterval =
+        const Duration(milliseconds: 1500);
+
+    return VisibilityDetector(
+      key: Key(post.postId!),
+      onVisibilityChanged: (info) {
+        var visiblePercentage = info.visibleFraction * 100;
+        if (visiblePercentage >= 60) {
+          _markPostAsViewed();
+        }
+      },
+      child: child,
+    );
   }
 }
 

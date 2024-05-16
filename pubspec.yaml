@@ -47,6 +47,7 @@ dependencies:
   flutter_svg: ^2.0.9
   permission_handler: 10.2.0
   intrinsic_dimension: ^0.3.1
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:
