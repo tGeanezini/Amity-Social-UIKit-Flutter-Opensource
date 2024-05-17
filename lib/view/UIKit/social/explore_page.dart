@@ -1,5 +1,4 @@
 import 'package:amity_sdk/amity_sdk.dart';
-import 'package:amity_uikit_beta_service/view/UIKit/social/post_target_page.dart';
 import 'package:amity_uikit_beta_service/view/UIKit/social/search_communities.dart';
 import 'package:amity_uikit_beta_service/view/social/community_feed.dart';
 import 'package:amity_uikit_beta_service/view/social/global_feed.dart';
@@ -51,7 +50,7 @@ class _CommunityPageState extends State<CommunityPage> {
           // centerTitle: false,
           automaticallyImplyLeading: false,
           title: Text(
-            "Community",
+            'Comunidade',
             style: Provider.of<AmityUIConfiguration>(context)
                 .titleTextStyle
                 .copyWith(
@@ -103,15 +102,11 @@ class _CommunityPageState extends State<CommunityPage> {
                         Tab(
                           text: "Newsfeed",
                         ),
-                        Tab(text: "Explore"),
+                        Tab(text: 'Explorar'),
                       ],
                     ),
                   ],
                 ),
-                // Divider(
-                //   color: Colors.grey,
-                //   height: 0,
-                // )
               ],
             ),
           ),
@@ -119,21 +114,21 @@ class _CommunityPageState extends State<CommunityPage> {
         body: TabBarView(
           children: [
             Scaffold(
-              floatingActionButton: FloatingActionButton(
-                shape: const CircleBorder(),
-                onPressed: () {
-                  // Navigate or perform action based on 'Newsfeed' tap
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const Scaffold(body: PostToPage()),
-                  ));
-                },
-                backgroundColor: Provider.of<AmityUIConfiguration>(context)
-                    .appColors
-                    .primary,
-                child: Provider.of<AmityUIConfiguration>(context)
-                    .iconConfig
-                    .postIcon(iconSize: 28, color: Colors.white),
-              ),
+              // floatingActionButton: FloatingActionButton(
+              //   shape: const CircleBorder(),
+              //   onPressed: () {
+              //     // Navigate or perform action based on 'Newsfeed' tap
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //       builder: (context) => const Scaffold(body: PostToPage()),
+              //     ));
+              //   },
+              //   backgroundColor: Provider.of<AmityUIConfiguration>(context)
+              //       .appColors
+              //       .primary,
+              //   child: Provider.of<AmityUIConfiguration>(context)
+              //       .iconConfig
+              //       .postIcon(iconSize: 28, color: Colors.white),
+              // ),
               body: GlobalFeedScreen(
                 isShowMyCommunity: widget.isShowMyCommunity,
               ),
@@ -178,7 +173,7 @@ class RecommendationSection extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 16, top: 20),
                 child: Text(
-                  'Recommended for you',
+                  'Recomendados para você',
                   style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -301,7 +296,7 @@ class RecommendationSection extends StatelessWidget {
                                   height: 4,
                                 ),
                                 Text(
-                                  '${community.membersCount} ${community.membersCount == 1 ? 'Member' : 'Members'}',
+                                  '${community.membersCount} ${community.membersCount == 1 ? 'Membro' : 'Membros'}',
 
                                   style:
                                       const TextStyle(color: Color(0xff636878)),
@@ -363,7 +358,7 @@ class TrendingSection extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 16, top: 20),
                 child: Text(
-                  'Today\'s Trending',
+                  'Em alta',
                   style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -452,12 +447,12 @@ class TrendingSection extends StatelessWidget {
                     ),
                     subtitle: community.categories!.isEmpty
                         ? Text(
-                            'no category • ${community.membersCount} ${community.membersCount == 1 ? "member" : "members"}',
+                            'sem categoria • ${community.membersCount} ${community.membersCount == 1 ? 'membro' : 'membros'}',
                             style: const TextStyle(
                                 fontSize: 13, color: Color(0xff636878)),
                           )
                         : Text(
-                            '${community.categories?[0]?.name ?? ""} • ${community.membersCount} ${community.membersCount == 1 ? "member" : "members"}',
+                            '${community.categories?[0]?.name ?? ""} • ${community.membersCount} ${community.membersCount == 1 ? 'membro' : 'membros'}',
                             style: const TextStyle(
                                 fontSize: 13, color: Color(0xff636878)),
                           ),
@@ -494,7 +489,7 @@ class CategorySection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Categories',
+                    'Categorias',
                     style: Provider.of<AmityUIConfiguration>(context)
                         .titleTextStyle
                         .copyWith(
@@ -606,7 +601,7 @@ class CategoryListPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0, // Remove shadow
         title: Text(
-          "Category",
+          "Categoria",
           style: Provider.of<AmityUIConfiguration>(context).titleTextStyle,
         ),
         iconTheme: const IconThemeData(color: Colors.black),
@@ -680,7 +675,7 @@ class _CommunityListPageState extends State<CommunityListPage> {
         elevation: 0.0, // Remove shadow
 
         title: Text(
-          widget.category.name ?? "Community",
+          widget.category.name ?? 'Comunidade',
           style: Provider.of<AmityUIConfiguration>(context).titleTextStyle,
         ),
         iconTheme: const IconThemeData(color: Colors.black),

@@ -60,12 +60,20 @@ class GlobalFeedScreenState extends State<GlobalFeedScreen> {
     globalFeedProvider.initAmityGlobalfeed();
   }
 
+  String lastPostViewedId = '';
+
   void _onPostViewed(AmityPost post) {
+    if (lastPostViewedId == post.postId) {
+      return;
+    }
+
     post.analytics().markPostAsViewed();
-    log('Id do post: ${post.postId}');
-    log('Quantidade de impressões do post: ${post.impression}');
-    log('Quantidade de alcances do post: ${post.reach}');
+    print('Id do post: ${post.postId}');
+    print('Quantidade de impressões do post: ${post.impression}');
+    print('Quantidade de alcances do post: ${post.reach}');
     // Enviar as informações de alcance e impressões para um serviço nosso
+
+    lastPostViewedId = post.postId!;
   }
 
   @override
@@ -193,7 +201,7 @@ class _PostViewedDetector extends StatelessWidget {
       key: Key(post.postId!),
       onVisibilityChanged: (info) {
         var visiblePercentage = info.visibleFraction * 100;
-        if (visiblePercentage >= 60) {
+        if (visiblePercentage >= 25) {
           _markPostAsViewed();
         }
       },
