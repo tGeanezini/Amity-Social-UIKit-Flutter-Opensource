@@ -100,7 +100,7 @@ class _CommunityPageState extends State<CommunityPage> {
                       ),
                       tabs: const [
                         Tab(
-                          text: "Newsfeed",
+                          text: "Feed de notícias",
                         ),
                         Tab(text: 'Explorar'),
                       ],
@@ -114,21 +114,6 @@ class _CommunityPageState extends State<CommunityPage> {
         body: TabBarView(
           children: [
             Scaffold(
-              // floatingActionButton: FloatingActionButton(
-              //   shape: const CircleBorder(),
-              //   onPressed: () {
-              //     // Navigate or perform action based on 'Newsfeed' tap
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (context) => const Scaffold(body: PostToPage()),
-              //     ));
-              //   },
-              //   backgroundColor: Provider.of<AmityUIConfiguration>(context)
-              //       .appColors
-              //       .primary,
-              //   child: Provider.of<AmityUIConfiguration>(context)
-              //       .iconConfig
-              //       .postIcon(iconSize: 28, color: Colors.white),
-              // ),
               body: GlobalFeedScreen(
                 isShowMyCommunity: widget.isShowMyCommunity,
               ),

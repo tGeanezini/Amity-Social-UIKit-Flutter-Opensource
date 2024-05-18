@@ -37,9 +37,9 @@ class FeedVM extends ChangeNotifier {
       if (postIndex != -1) {
         _amityGlobalFeedPosts.removeAt(postIndex);
         notifyListeners();
-        callback(true, "Post deleted successfully.");
+        callback(true, "Publicação excluída com sucesso.");
       } else {
-        callback(false, "Post not found in the list.");
+        callback(false, "A publicação não foi encontrada.");
       }
     }).onError((error, stackTrace) async {
       String errorMessage = error.toString();
