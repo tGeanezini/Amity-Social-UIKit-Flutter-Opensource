@@ -32,11 +32,11 @@ class MediaGalleryPage extends StatelessWidget {
               const SizedBox(
                 width: 12,
               ),
-              _mediaButton(context, "Photos", MediaType.photos),
+              _mediaButton(context, "Fotos", MediaType.photos),
               const SizedBox(
                 width: 6,
               ),
-              _mediaButton(context, "Videos", MediaType.videos),
+              _mediaButton(context, "Vídeos", MediaType.videos),
             ],
           ),
           const SizedBox(
@@ -112,14 +112,14 @@ class MediaGalleryPage extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         const Text(
-          "This account is private",
+          "A conta deste usuário é privada",
           style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w600,
               color: Color(0xff292B32)),
         ),
         const Text(
-          "Follow this user to see all posts",
+          "Siga esse usuário para ver todas as postagens",
           style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w400,
@@ -142,7 +142,7 @@ class MediaGalleryPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Text(
-              "No photos yet",
+              "Nenhuma foto adicionada",
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
@@ -233,7 +233,7 @@ class MediaGalleryPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Text(
-              "No videos yet",
+              "Nenhum vídeo adicionado",
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,

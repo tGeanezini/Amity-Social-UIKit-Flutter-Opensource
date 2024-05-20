@@ -4,7 +4,6 @@ import 'package:amity_sdk/amity_sdk.dart';
 import 'package:amity_uikit_beta_service/utils/dynamicSilverAppBar.dart';
 import 'package:amity_uikit_beta_service/view/UIKit/social/community_setting/community_member_page.dart';
 import 'package:amity_uikit_beta_service/view/UIKit/social/community_setting/edit_community.dart';
-import 'package:amity_uikit_beta_service/view/UIKit/social/community_setting/setting_page.dart';
 import 'package:amity_uikit_beta_service/view/UIKit/social/create_post_screenV2.dart';
 import 'package:amity_uikit_beta_service/view/social/pending_page.dart';
 import 'package:amity_uikit_beta_service/view/user/medie_component.dart';
@@ -109,7 +108,7 @@ class CommunityScreenState extends State<CommunityScreen> {
               children: [
                 Text("${Provider.of<CommuFeedVM>(context).postCount}",
                     style: const TextStyle(fontSize: 16)),
-                const Text('posts',
+                const Text('publicações',
                     style: TextStyle(fontSize: 16, color: Color(0xff898E9E)))
               ],
             ),
@@ -128,7 +127,7 @@ class CommunityScreenState extends State<CommunityScreen> {
                     community.membersCount.toString(),
                     style: const TextStyle(fontSize: 16),
                   ),
-                  Text(community.membersCount == 1 ? 'member' : 'members',
+                  Text(community.membersCount == 1 ? 'membro' : 'membros',
                       style: const TextStyle(
                           fontSize: 16, color: Color(0xff898E9E)))
                 ],
@@ -308,27 +307,6 @@ class CommunityScreenState extends State<CommunityScreen> {
                               flexibleSpace: CommunityDetailComponent(
                                 community: snapshot.data!,
                               ),
-
-                              actions: [
-                                // Text(
-                                //     "${sizeVM.getCommunityDetailSectionSize()}"),
-                                IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context2) =>
-                                                  CommunitySettingPage(
-                                                    community: snapshot.data!,
-                                                  )));
-                                    },
-                                    icon: Icon(
-                                      Icons.more_horiz_rounded,
-                                      color: Provider.of<AmityUIConfiguration>(
-                                              context)
-                                          .appColors
-                                          .base,
-                                    ))
-                              ],
                               bottom: PreferredSize(
                                 preferredSize: const Size.fromHeight(25),
                                 child: Row(
@@ -366,8 +344,8 @@ class CommunityScreenState extends State<CommunityScreen> {
                                             fontFamily: 'SF Pro Text',
                                           ),
                                           tabs: const [
-                                            Tab(text: "Timeline"),
-                                            Tab(text: "Gallery"),
+                                            Tab(text: "Linha do tempo"),
+                                            Tab(text: "Galeria"),
                                           ],
                                         ),
                                       ),
@@ -510,7 +488,7 @@ class _EditProfileButtonState extends State<EditProfileButton> {
                       ),
                       SizedBox(width: 8.0), // Space between icon and text
                       Text(
-                        "Join",
+                        "Participar",
                         style: TextStyle(
                           color: Colors.white, // Text color
                         ),
@@ -550,7 +528,7 @@ class _EditProfileButtonState extends State<EditProfileButton> {
                       ),
                   const SizedBox(width: 8.0), // Space between icon and text
                   Text(
-                    "Edit Profile",
+                    "Editar Perfil",
                     style: TextStyle(
                       color: Provider.of<AmityUIConfiguration>(context)
                           .appColors
@@ -607,7 +585,7 @@ class PedindingButton extends StatelessWidget {
                 ),
                 const SizedBox(width: 8.0), // Space between icon and text
                 Text(
-                  "Pending posts",
+                  "Publicações pendentes",
                   style: TextStyle(
                     color: Provider.of<AmityUIConfiguration>(context)
                         .appColors
@@ -624,8 +602,8 @@ class PedindingButton extends StatelessWidget {
                 Text(
                   !community
                           .hasPermission(AmityPermission.REVIEW_COMMUNITY_POST)
-                      ? "Your posts are pending for review"
-                      : "${Provider.of<CommuFeedVM>(context).reviewingPostCount} posts need approval",
+                      ? "Suas publicações estão pendentes de revisão"
+                      : "${Provider.of<CommuFeedVM>(context).reviewingPostCount} publicações precisam de aprovação",
                   style: TextStyle(
                     fontSize: 13,
                     color: Provider.of<AmityUIConfiguration>(context)
@@ -654,21 +632,24 @@ class CommunityDetailComponent extends StatefulWidget {
 
 class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
   Widget communityDescription(AmityCommunity community) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 5.0,
-        ),
-        Text(
-          community.description ?? "",
-          style: TextStyle(
-            fontSize: 15,
-            color: Provider.of<AmityUIConfiguration>(context).appColors.base,
-          ),
-        ),
-      ],
-    );
+    return community.description != null
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+              Text(
+                community.description ?? "",
+                style: TextStyle(
+                  fontSize: 15,
+                  color:
+                      Provider.of<AmityUIConfiguration>(context).appColors.base,
+                ),
+              ),
+            ],
+          )
+        : const SizedBox.shrink();
   }
 
   void onCommunityOptionTap(
@@ -703,7 +684,7 @@ class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
                           .appColors
                           .base,
                     )),
-                const Text('posts',
+                const Text('publicações',
                     style: TextStyle(fontSize: 16, color: Color(0xff898E9E)))
               ],
             ),
@@ -732,7 +713,7 @@ class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
                           .base,
                     ),
                   ),
-                  Text(community.membersCount == 1 ? 'member' : 'members',
+                  Text(community.membersCount == 1 ? 'membro' : 'membros',
                       style: const TextStyle(
                           fontSize: 16, color: Color(0xff898E9E)))
                 ],
@@ -816,7 +797,7 @@ class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
                       Text(
                           widget.community.displayName != null
                               ? widget.community.displayName!
-                              : "Community",
+                              : "Comunidade",
                           style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
@@ -836,7 +817,7 @@ class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
                       : Text(
                           widget.community.displayName != null
                               ? widget.community.categories!.isEmpty
-                                  ? "no category"
+                                  ? "sem categoria"
                                   : widget.community.categories![0]?.name ?? ""
                               : "",
                           style: const TextStyle(
@@ -879,15 +860,11 @@ class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
               !widget.community.isJoined!
                   ? const SizedBox()
                   : !widget.community.isPostReviewEnabled!
-                      ? const SizedBox(
-                          height: 60,
-                        )
+                      ? const SizedBox.shrink()
                       : Provider.of<CommuFeedVM>(context)
                               .getCommunityPendingPosts()
                               .isEmpty
-                          ? const SizedBox(
-                              height: 60,
-                            )
+                          ? const SizedBox.shrink()
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

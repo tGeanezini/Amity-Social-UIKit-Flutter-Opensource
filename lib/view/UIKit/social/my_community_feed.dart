@@ -51,7 +51,7 @@ class _MyCommunityPageState extends State<MyCommunityPage> {
             },
           ),
           title: Text(
-            'My Community',
+            'Minha Comunidade',
             style: Provider.of<AmityUIConfiguration>(context)
                 .titleTextStyle
                 .copyWith(
@@ -226,7 +226,7 @@ class CommunityIconList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'My Community',
+                  'Minha Comunidade',
                   style: TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.bold,

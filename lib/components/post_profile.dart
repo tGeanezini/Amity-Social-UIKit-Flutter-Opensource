@@ -79,7 +79,7 @@ class CustomListTile extends StatelessWidget {
                         const SizedBox(width: 5),
                         const Icon(Icons.circle, size: 5),
                         const SizedBox(width: 5),
-                        const Text("Edited"),
+                        const Text("Editado"),
                       ]
                     ],
                   ),

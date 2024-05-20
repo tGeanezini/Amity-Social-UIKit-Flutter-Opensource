@@ -355,7 +355,7 @@ class CommunityIconList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'My Community',
+                  'Minha Comunidade',
                   style: TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.bold,

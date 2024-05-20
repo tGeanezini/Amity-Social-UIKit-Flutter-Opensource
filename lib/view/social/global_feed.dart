@@ -269,9 +269,7 @@ class _PostWidgetState
     List<String> postOwnerMenu = ['Editar publicação', 'Excluir publicação'];
     final isFlaggedByMe = widget.post.isFlaggedByMe;
     List<String> otherPostMenu = [
-      widget.post.isFlaggedByMe
-          ? 'Denunciar publicação'
-          : 'Não denunciar publicação',
+      widget.post.isFlaggedByMe ? 'Remover denúncia' : 'Denunciar publicação',
       'Bloquear usuário'
     ];
 
@@ -282,7 +280,7 @@ class _PostWidgetState
       onSelected: (value) {
         switch (value) {
           case 'Denunciar publicação':
-          case 'Não denunciar publicação':
+          case 'Remover denúncia':
             log("isflag by me $isFlaggedByMe");
             if (isFlaggedByMe) {
               Provider.of<PostVM>(context, listen: false)
