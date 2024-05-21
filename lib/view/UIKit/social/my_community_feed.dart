@@ -51,7 +51,7 @@ class _MyCommunityPageState extends State<MyCommunityPage> {
             },
           ),
           title: Text(
-            'Minha Comunidade',
+            'Meus grupos',
             style: Provider.of<AmityUIConfiguration>(context)
                 .titleTextStyle
                 .copyWith(
@@ -92,7 +92,7 @@ class _MyCommunityPageState extends State<MyCommunityPage> {
                       Icons.search,
                       color: Colors.grey,
                     ),
-                    hintText: 'Search',
+                    hintText: 'Buscar',
                     filled: true,
                     contentPadding: const EdgeInsets.symmetric(vertical: 0),
                     fillColor: Colors.grey[3],
@@ -172,7 +172,7 @@ class CommunityWidget extends StatelessWidget {
                     ),
                   const SizedBox(width: 4.0),
                   Text(
-                    communityStream.displayName ?? "Community ",
+                    communityStream.displayName ?? "Grupo ",
                     style: TextStyle(
                       overflow: TextOverflow.ellipsis,
                       color: Provider.of<AmityUIConfiguration>(context)
@@ -226,7 +226,7 @@ class CommunityIconList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Minha Comunidade',
+                  'Meus grupos',
                   style: TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.bold,

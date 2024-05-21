@@ -102,7 +102,7 @@ class _PostToPageState extends State<PostToPage> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    "Minha comunidade",
+                    "Meus grupos",
                     style: TextStyle(
                         fontSize: 15,
                         color: Provider.of<AmityUIConfiguration>(context)
