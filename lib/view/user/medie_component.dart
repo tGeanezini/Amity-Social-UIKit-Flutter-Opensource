@@ -152,43 +152,45 @@ class MediaGalleryPage extends StatelessWidget {
         ),
       ),
     );
-    Widget gridView = GridView.builder(
-      padding: EdgeInsets.zero,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 4.0,
-        mainAxisSpacing: 4.0,
-      ),
-      itemCount: amityPosts.length,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        var imageData = amityPosts[index].data as ImageData;
-        var url = imageData.getUrl(AmityImageSize.MEDIUM);
-        // return Text(url);
+    Widget gridView = Expanded(
+      child: GridView.builder(
+        padding: EdgeInsets.zero,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 4.0,
+          mainAxisSpacing: 4.0,
+        ),
+        itemCount: amityPosts.length,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          var imageData = amityPosts[index].data as ImageData;
+          var url = imageData.getUrl(AmityImageSize.MEDIUM);
+          // return Text(url);
 
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ImageViewerScreen(
-                  files: [
-                    amityPosts[index],
-                  ],
-                  initialIndex: 0,
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ImageViewerScreen(
+                    files: [
+                      amityPosts[index],
+                    ],
+                    initialIndex: 0,
+                  ),
                 ),
+              );
+            },
+            child: GridTile(
+              child: Image.network(
+                url,
+                fit: BoxFit.cover,
               ),
-            );
-          },
-          child: GridTile(
-            child: Image.network(
-              url,
-              fit: BoxFit.cover,
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
 
     if (galleryFeed == GalleryFeed.user) {
@@ -243,64 +245,66 @@ class MediaGalleryPage extends StatelessWidget {
         ),
       ),
     );
-    var gridView = GridView.builder(
-      padding: EdgeInsets.zero,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 4.0,
-        mainAxisSpacing: 4.0,
-      ),
-      itemCount: amityPosts.length,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        VideoData videoData = amityPosts[index].data as VideoData;
-        String thumbnailUrl =
-            videoData.thumbnail!.getUrl(AmityImageSize.MEDIUM);
+    var gridView = Expanded(
+      child: GridView.builder(
+        padding: EdgeInsets.zero,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 4.0,
+          mainAxisSpacing: 4.0,
+        ),
+        itemCount: amityPosts.length,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          VideoData videoData = amityPosts[index].data as VideoData;
+          String thumbnailUrl =
+              videoData.thumbnail!.getUrl(AmityImageSize.MEDIUM);
 
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => VideoPlayerScreen(
-                  files: [amityPosts[index]],
-                  isFillScreen: true,
-                  initialIndex: 0,
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VideoPlayerScreen(
+                    files: [amityPosts[index]],
+                    isFillScreen: true,
+                    initialIndex: 0,
+                  ),
                 ),
+              );
+            },
+            child: GridTile(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                            thumbnailUrl,
+                          )),
+                      color: Colors.black38,
+                    ),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.black38,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.play_arrow,
+                      color: Colors.white,
+                      size: 50.0, // Adjust the size as needed
+                    ),
+                  ),
+                ],
               ),
-            );
-          },
-          child: GridTile(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          thumbnailUrl,
-                        )),
-                    color: Colors.black38,
-                  ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.black38,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.play_arrow,
-                    color: Colors.white,
-                    size: 50.0, // Adjust the size as needed
-                  ),
-                ),
-              ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
     if (galleryFeed == GalleryFeed.user) {
       return Consumer<UserFeedVM>(
