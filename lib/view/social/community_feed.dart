@@ -845,35 +845,35 @@ class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
               const SizedBox(
                 height: 16,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                      child: EditProfileButton(
-                    community: widget.community,
-                  )),
-                ],
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              !widget.community.isJoined!
-                  ? const SizedBox()
-                  : !widget.community.isPostReviewEnabled!
-                      ? const SizedBox.shrink()
-                      : Provider.of<CommuFeedVM>(context)
-                              .getCommunityPendingPosts()
-                              .isEmpty
-                          ? const SizedBox.shrink()
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                    child: PedindingButton(
-                                  community: widget.community,
-                                )),
-                              ],
-                            )
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Expanded(
+              //         child: EditProfileButton(
+              //       community: widget.community,
+              //     )),
+              //   ],
+              // ),
+              // const SizedBox(
+              //   height: 12,
+              // ),
+              // !widget.community.isJoined!
+              //     ? const SizedBox()
+              //     : !widget.community.isPostReviewEnabled!
+              //         ? const SizedBox.shrink()
+              //         : Provider.of<CommuFeedVM>(context)
+              //                 .getCommunityPendingPosts()
+              //                 .isEmpty
+              //             ? const SizedBox.shrink()
+              //             : Row(
+              //                 mainAxisAlignment: MainAxisAlignment.center,
+              //                 children: [
+              //                   Expanded(
+              //                       child: PedindingButton(
+              //                     community: widget.community,
+              //                   )),
+              //                 ],
+              //               )
             ],
           ),
         ),
