@@ -98,7 +98,7 @@ class GlobalFeedScreenState extends State<GlobalFeedScreen> {
 
             globalFeedProvider.initAmityGlobalfeed(
                 // isCustomPostRanking: widget.isCustomPostRanking
-                isCustomPostRanking: false);
+                isCustomPostRanking: true);
           },
           child: Container(
             color:
