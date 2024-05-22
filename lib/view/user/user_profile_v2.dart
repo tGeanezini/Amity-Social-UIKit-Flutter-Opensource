@@ -5,7 +5,6 @@ import 'package:amity_uikit_beta_service/view/social/global_feed.dart';
 import 'package:amity_uikit_beta_service/view/social/user_follow_screen.dart';
 import 'package:amity_uikit_beta_service/view/user/edit_profile.dart';
 import 'package:amity_uikit_beta_service/view/user/medie_component.dart';
-import 'package:amity_uikit_beta_service/view/user/user_setting.dart';
 import 'package:amity_uikit_beta_service/viewmodel/follower_viewmodel.dart';
 import 'package:animation_wrappers/animations/fade_animation.dart';
 import 'package:animation_wrappers/animations/faded_scale_animation.dart';
@@ -758,33 +757,33 @@ class AppScaffold extends StatelessWidget {
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          actions: [
-            Provider.of<UserFeedVM>(context).amityMyFollowInfo.id == null
-                ? const SizedBox()
-                : StreamBuilder<AmityUserFollowInfo>(
-                    stream: Provider.of<UserFeedVM>(context)
-                        .amityMyFollowInfo
-                        .listen
-                        .stream,
-                    initialData:
-                        Provider.of<UserFeedVM>(context).amityMyFollowInfo,
-                    builder: (context, snapshot) {
-                      return IconButton(
-                        icon: Icon(Icons.more_horiz,
-                            color: Provider.of<AmityUIConfiguration>(context)
-                                .appColors
-                                .base),
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => UserSettingPage(
-                                    amityMyFollowInfo: snapshot.data!,
-                                    amityUser: Provider.of<UserFeedVM>(context)
-                                        .amityUser!,
-                                  )));
-                        },
-                      );
-                    }),
-          ],
+          // actions: [
+          //   Provider.of<UserFeedVM>(context).amityMyFollowInfo.id == null
+          //       ? const SizedBox()
+          //       : StreamBuilder<AmityUserFollowInfo>(
+          //           stream: Provider.of<UserFeedVM>(context)
+          //               .amityMyFollowInfo
+          //               .listen
+          //               .stream,
+          //           initialData:
+          //               Provider.of<UserFeedVM>(context).amityMyFollowInfo,
+          //           builder: (context, snapshot) {
+          //             return IconButton(
+          //               icon: Icon(Icons.more_horiz,
+          //                   color: Provider.of<AmityUIConfiguration>(context)
+          //                       .appColors
+          //                       .base),
+          //               onPressed: () {
+          //                 Navigator.of(context).push(MaterialPageRoute(
+          //                     builder: (context) => UserSettingPage(
+          //                           amityMyFollowInfo: snapshot.data!,
+          //                           amityUser: Provider.of<UserFeedVM>(context)
+          //                               .amityUser!,
+          //                         )));
+          //               },
+          //             );
+          //           }),
+          // ],
         ),
         body: RefreshIndicator(
           color: Provider.of<AmityUIConfiguration>(context).primaryColor,

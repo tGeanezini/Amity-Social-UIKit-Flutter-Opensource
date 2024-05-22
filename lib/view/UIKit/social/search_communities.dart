@@ -364,8 +364,11 @@ class CommunityIconList extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            const Scaffold(body: MyCommunityPage()),
+                        builder: (context) => const Scaffold(
+                          body: MyCommunityPage(
+                            canCreateCommunity: false,
+                          ),
+                        ),
                       ));
                     },
                     child: Container(child: const Icon(Icons.chevron_right))),
