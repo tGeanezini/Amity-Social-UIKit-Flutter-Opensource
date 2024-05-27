@@ -70,10 +70,10 @@ class _AmityCreatePostV2ScreenState extends State<AmityCreatePostV2Screen> {
               if (hasContent) {
                 ConfirmationDialog().show(
                   context: context,
-                  title: 'Discard Post?',
-                  detailText: 'Do you want to discard your post?',
-                  leftButtonText: 'Cancel',
-                  rightButtonText: 'Discard',
+                  title: 'Descartar postagem?',
+                  detailText: 'Você quer descartar sua postagem?',
+                  leftButtonText: 'Cancelar',
+                  rightButtonText: 'Descartar',
                   onConfirm: () {
                     Navigator.of(context).pop();
                   },
@@ -115,9 +115,10 @@ class _AmityCreatePostV2ScreenState extends State<AmityCreatePostV2Screen> {
                                 if (!widget.community!.hasPermission(
                                     AmityPermission.REVIEW_COMMUNITY_POST)) {
                                   await AmityDialog().showAlertErrorDialog(
-                                      title: "Post submitted",
-                                      message:
-                                          "Your post has been submitted to the pending list. It will be reviewed by community moderator");
+                                    title: "Publicação enviada!",
+                                    message:
+                                        "Sua publicação foi enviada para análise e estará disponível assim que for aprovada por um moderador do grupo.",
+                                  );
                                 }
                               }
                               Navigator.of(context).pop();
@@ -145,7 +146,7 @@ class _AmityCreatePostV2ScreenState extends State<AmityCreatePostV2Screen> {
                       }
                     }
                   : null,
-              child: Text("Post",
+              child: Text("Publicar",
                   style: TextStyle(
                       color: vm.isPostValid
                           ? Provider.of<AmityUIConfiguration>(context)
@@ -174,7 +175,7 @@ class _AmityCreatePostV2ScreenState extends State<AmityCreatePostV2Screen> {
                           maxLines: null,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Write something to post",
+                            hintText: "Sobre o que você quer falar?",
                             hintStyle: TextStyle(
                                 color:
                                     Provider.of<AmityUIConfiguration>(context)
@@ -202,7 +203,7 @@ class _AmityCreatePostV2ScreenState extends State<AmityCreatePostV2Screen> {
                       Icons.camera_alt_outlined,
                       isEnable:
                           vm.availableFileSelectionOptions()[MyFileType.image]!,
-                      label: "Photo",
+                      label: "Foto",
                       // debugingText:
                       //     "${vm2.isNotSelectVideoYet()}&& ${vm2.isNotSelectedFileYet()}",
                       onTap: () {
@@ -211,7 +212,7 @@ class _AmityCreatePostV2ScreenState extends State<AmityCreatePostV2Screen> {
                     ),
                     _iconButton(
                       Icons.image_outlined,
-                      label: "Image",
+                      label: "Imagem",
                       isEnable:
                           vm.availableFileSelectionOptions()[MyFileType.image]!,
                       onTap: () async {
@@ -220,29 +221,11 @@ class _AmityCreatePostV2ScreenState extends State<AmityCreatePostV2Screen> {
                     ),
                     _iconButton(
                       Icons.play_circle_outline,
-                      label: "Video",
+                      label: "Vídeo",
                       isEnable:
                           vm.availableFileSelectionOptions()[MyFileType.video]!,
                       onTap: () async {
                         _handleVideoTap(context);
-                      },
-                    ),
-                    _iconButton(
-                      Icons.attach_file_outlined,
-                      label: "File",
-                      isEnable:
-                          vm.availableFileSelectionOptions()[MyFileType.file]!,
-                      onTap: () async {
-                        _handleFileTap(context);
-                      },
-                    ),
-                    _iconButton(
-                      Icons.more_horiz,
-                      isEnable: true,
-                      label: "More",
-                      onTap: () {
-                        // TODO: Implement more options logic
-                        _showMoreOptions(context);
                       },
                     ),
                   ],

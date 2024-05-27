@@ -3,11 +3,9 @@ import 'dart:developer';
 import 'package:amity_sdk/amity_sdk.dart';
 import 'package:amity_uikit_beta_service/components/alert_dialog.dart';
 import 'package:amity_uikit_beta_service/view/social/select_user_page.dart';
-import 'package:amity_uikit_beta_service/view/user/user_profile_v2.dart';
 import 'package:amity_uikit_beta_service/viewmodel/community_member_viewmodel.dart';
 import 'package:amity_uikit_beta_service/viewmodel/community_viewmodel.dart';
 import 'package:amity_uikit_beta_service/viewmodel/configuration_viewmodel.dart';
-import 'package:amity_uikit_beta_service/viewmodel/user_feed_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -178,13 +176,13 @@ class MemberList extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider(
-                        create: (context) => UserFeedVM(),
-                        child: UserProfileScreen(
-                          amityUser: viewModel.userList[index].user!,
-                          amityUserId: viewModel.userList[index].user!.userId!,
-                        ))));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => ChangeNotifierProvider(
+                //         create: (context) => UserFeedVM(),
+                //         child: UserProfileScreen(
+                //           amityUser: viewModel.userList[index].user!,
+                //           amityUserId: viewModel.userList[index].user!.userId!,
+                //         ))));
               },
               leading: CircleAvatar(
                 backgroundColor: Provider.of<AmityUIConfiguration>(context)
@@ -239,13 +237,13 @@ class ModeratorList extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider(
-                        create: (context) => UserFeedVM(),
-                        child: UserProfileScreen(
-                          amityUser: viewModel.moderatorList[index].user!,
-                          amityUserId: viewModel.userList[index].user!.userId!,
-                        ))));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => ChangeNotifierProvider(
+                //         create: (context) => UserFeedVM(),
+                //         child: UserProfileScreen(
+                //           amityUser: viewModel.moderatorList[index].user!,
+                //           amityUserId: viewModel.userList[index].user!.userId!,
+                //         ))));
               },
               leading: CircleAvatar(
                 backgroundColor: Provider.of<AmityUIConfiguration>(context)

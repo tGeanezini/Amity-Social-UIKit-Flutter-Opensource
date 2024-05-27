@@ -698,9 +698,9 @@ class _CommunityDetailComponentState extends State<CommunityDetailComponent> {
             GestureDetector(
               onTap: () {
                 // Navigate to Members Page or perform an action
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => MemberManagementPage(
-                        communityId: widget.community.communityId!)));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => MemberManagementPage(
+                //         communityId: widget.community.communityId!)));
               },
               child: Column(
                 children: [

@@ -1,5 +1,4 @@
 import 'package:amity_sdk/amity_sdk.dart';
-import 'package:amity_uikit_beta_service/view/UIKit/social/search_communities.dart';
 import 'package:amity_uikit_beta_service/view/social/community_feed.dart';
 import 'package:amity_uikit_beta_service/view/social/global_feed.dart';
 import 'package:amity_uikit_beta_service/viewmodel/community_feed_viewmodel.dart';
@@ -58,20 +57,20 @@ class _CommunityPageState extends State<CommunityPage> {
                         .appColors
                         .base),
           ),
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.search,
-                color:
-                    Provider.of<AmityUIConfiguration>(context).appColors.base,
-              ),
-              onPressed: () {
-                // Implement search functionality
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SearchCommunitiesScreen()));
-              },
-            )
-          ],
+          // actions: [
+          //   IconButton(
+          //     icon: Icon(
+          //       Icons.search,
+          //       color:
+          //           Provider.of<AmityUIConfiguration>(context).appColors.base,
+          //     ),
+          //     onPressed: () {
+          //       // Implement search functionality
+          //       Navigator.of(context).push(MaterialPageRoute(
+          //           builder: (context) => const SearchCommunitiesScreen()));
+          //     },
+          //   )
+          // ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(
                 48.0), // Provide a height for the AppBar's bottom

@@ -322,7 +322,7 @@ class UserProfileScreenState extends State<UserProfileScreen>
                                                   .base,
                                             ),
                                             Text(
-                                              "Edit Profile",
+                                              "Esse? 4",
                                               style: theme.textTheme.titleSmall!
                                                   .copyWith(
                                                 color: Provider.of<

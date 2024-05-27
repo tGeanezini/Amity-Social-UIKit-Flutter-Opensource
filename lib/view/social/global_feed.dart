@@ -6,7 +6,6 @@ import 'package:amity_uikit_beta_service/components/post_profile.dart';
 import 'package:amity_uikit_beta_service/view/UIKit/social/community_setting/posts/edit_post_page.dart';
 import 'package:amity_uikit_beta_service/view/UIKit/social/general_component.dart';
 import 'package:amity_uikit_beta_service/view/UIKit/social/my_community_feed.dart';
-import 'package:amity_uikit_beta_service/view/user/user_profile_v2.dart';
 import 'package:amity_uikit_beta_service/viewmodel/amity_viewmodel.dart';
 import 'package:amity_uikit_beta_service/viewmodel/my_community_viewmodel.dart';
 import 'package:amity_uikit_beta_service/viewmodel/user_viewmodel.dart';
@@ -499,18 +498,18 @@ class _PostWidgetState
                       leading: FadeAnimation(
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => ChangeNotifierProvider(
-                                  create: (context) => UserFeedVM(),
-                                  child: UserProfileScreen(
-                                    amityUser: widget.post.postedUser!,
-                                    amityUserId:
-                                        widget.post.postedUser!.userId!,
-                                  ),
-                                ),
-                              ),
-                            );
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(
+                            //     builder: (context) => ChangeNotifierProvider(
+                            //       create: (context) => UserFeedVM(),
+                            //       child: UserProfileScreen(
+                            //         amityUser: widget.post.postedUser!,
+                            //         amityUserId:
+                            //             widget.post.postedUser!.userId!,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: getAvatarImage(
                             widget.post.postedUser!.userId !=
@@ -526,18 +525,18 @@ class _PostWidgetState
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => ChangeNotifierProvider(
-                                    create: (context) => UserFeedVM(),
-                                    child: UserProfileScreen(
-                                      amityUser: widget.post.postedUser!,
-                                      amityUserId:
-                                          widget.post.postedUser!.userId!,
-                                    ),
-                                  ),
-                                ),
-                              );
+                              // Navigator.of(context).push(
+                              //   MaterialPageRoute(
+                              //     builder: (context) => ChangeNotifierProvider(
+                              //       create: (context) => UserFeedVM(),
+                              //       child: UserProfileScreen(
+                              //         amityUser: widget.post.postedUser!,
+                              //         amityUserId:
+                              //             widget.post.postedUser!.userId!,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // );
                             },
                             child: Text(
                               widget.post.postedUser!.userId !=

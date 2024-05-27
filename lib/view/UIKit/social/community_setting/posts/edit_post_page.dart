@@ -45,7 +45,7 @@ class _AmityEditPostScreenState extends State<AmityEditPostScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Text(
-            "Edit post",
+            "Editar publicação",
             style: Provider.of<AmityUIConfiguration>(context)
                 .titleTextStyle
                 .copyWith(
@@ -62,10 +62,10 @@ class _AmityEditPostScreenState extends State<AmityEditPostScreen> {
               if (hasContent) {
                 ConfirmationDialog().show(
                   context: context,
-                  title: 'Discard Post?',
-                  detailText: 'Do you want to discard your post?',
-                  leftButtonText: 'Cancel',
-                  rightButtonText: 'Discard',
+                  title: 'Descartar publicação?',
+                  detailText: 'Você quer descartar sua publicação?',
+                  leftButtonText: 'Cancelar',
+                  rightButtonText: 'Descartar',
                   onConfirm: () {
                     Navigator.of(context).pop();
                   },
@@ -86,7 +86,7 @@ class _AmityEditPostScreenState extends State<AmityEditPostScreen> {
                           });
                     }
                   : null,
-              child: Text("Save",
+              child: Text("Salvar",
                   style: TextStyle(
                       color: vm.isPostValid
                           ? Provider.of<AmityUIConfiguration>(context)
@@ -128,7 +128,7 @@ class _AmityEditPostScreenState extends State<AmityEditPostScreen> {
                           maxLines: null,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Write something to post",
+                            hintText: "Sobre o que você quer falar?",
                           ),
                         ),
                         Consumer<EditPostVM>(
