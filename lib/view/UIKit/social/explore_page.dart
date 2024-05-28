@@ -39,24 +39,24 @@ class _CommunityPageState extends State<CommunityPage> {
               .appColors
               .baseBackground,
 
-          leading: IconButton(
-            icon: Icon(
-              Icons.close,
-              color: Provider.of<AmityUIConfiguration>(context).appColors.base,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          // centerTitle: false,
-          automaticallyImplyLeading: false,
-          title: Text(
-            'Comunidade',
-            style: Provider.of<AmityUIConfiguration>(context)
-                .titleTextStyle
-                .copyWith(
-                    color: Provider.of<AmityUIConfiguration>(context)
-                        .appColors
-                        .base),
-          ),
+          // leading: IconButton(
+          //   icon: Icon(
+          //     Icons.close,
+          //     color: Provider.of<AmityUIConfiguration>(context).appColors.base,
+          //   ),
+          //   onPressed: () => Navigator.of(context).pop(),
+          // ),
+          // // centerTitle: false,
+          // automaticallyImplyLeading: false,
+          // title: Text(
+          //   'Comunidade',
+          //   style: Provider.of<AmityUIConfiguration>(context)
+          //       .titleTextStyle
+          //       .copyWith(
+          //           color: Provider.of<AmityUIConfiguration>(context)
+          //               .appColors
+          //               .base),
+          // ),
           // actions: [
           //   IconButton(
           //     icon: Icon(
@@ -73,7 +73,7 @@ class _CommunityPageState extends State<CommunityPage> {
           // ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(
-                48.0), // Provide a height for the AppBar's bottom
+                0), // Provide a height for the AppBar's bottom
             child: Column(
               children: [
                 Row(
